@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script>
+
+        function func1(name){
+            alert(name)
+        }
+
+        function func2(name,age){
+            alert(name+age)
+        }
+
+        function func3(name,age,height){
+            <!-- 分别测试有参和无参 -->
+            var msg = "{\"msg\":\"msg from javascript\"}"
+            <!--var msg = "{}"-->
+            prompt("jsbridge://BridgeImp/log?"+msg)
+        }
+
+        </script>
+    </head>
+
+    <body>
+        <button onclick="func3()">hello</button>
+    </body>
+</html>
