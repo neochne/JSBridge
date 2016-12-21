@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import cn.opensrc.library.IBridge;
+import cn.opensrc.brilib.IBridge;
 
 /**
  * Author:       sharp

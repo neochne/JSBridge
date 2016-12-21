@@ -1,4 +1,4 @@
-package cn.opensrc.library;
+package cn.opensrc.brilib;
 
 import org.junit.Test;
 

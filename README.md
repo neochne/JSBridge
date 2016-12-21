@@ -3,21 +3,21 @@
 ## 使用
 ### Gradle
 ```
-compile 'cn.opensrc.library:JSBridge:1.0.0'
+compile 'cn.opensrc.brilib:jsbridge:1.0.0'
 ```
 ### Maven
 ```
 <dependency>
-  <groupId>cn.opensrc.library</groupId>
-  <artifactId>JSBridge</artifactId>
+  <groupId>cn.opensrc.brilib</groupId>
+  <artifactId>jsbridge</artifactId>
   <version>1.0.0</version>
   <type>pom</type>
 </dependency>
 ```
 ### lvy
 ```
-<dependency org='cn.opensrc.library' name='JSBridge' rev='1.0.0'>
-  <artifact name='JSBridge' ext='pom' ></artifact>
+<dependency org='cn.opensrc.brilib' name='jsbridge' rev='1.0.0'>
+  <artifact name='jsbridge' ext='pom' ></artifact>
 </dependency>
 ```
 
@@ -58,14 +58,16 @@ wv.setWebChromeClient(new WebChromeClient(){
 ```
 // 参数1为WebView
 // 参数2为需要调用的js函数名
-// 参数3为可变参，为js函数需要的参数
+// 参数3为可变参，为js函数需要的参数，无参数可不传入即可
 JSBridge.callJSFunc(wv,"func1","sharp");
 ```
 
 ## 使用注意
 1. API >= 11 能使用本库.
-2. web 端传到Android端的消息格式为：jsbridge://className/methodName?{"param1":"value1"}
-3. 具体使用请参见**JSBridge**类。
+2. web端传到Android端的消息格式为：jsbridge://className/methodName?{"param1":"value1"}
+3. web端调用android端方法时，暴露的java类请先调用**JSBridge.register**方法进行注册。
+4. 具体使用请参见**JSBridge**类。
+
 
 
 ## 联系方式

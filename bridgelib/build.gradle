@@ -33,9 +33,9 @@ dependencies {
 
 publish{
     userOrg = 'sharpchen'
-    groupId = 'cn.opensrc.library'
-    artifactId = 'JSBridge'
+    groupId = 'cn.opensrc.brilib'
+    artifactId = 'jsbridge'// 小写
     publishVersion = "$rootProject.versionName"
     desc = 'android JSBridge'
-    website = ''
+    website = 'https://github.com/SharpChen/JSBridge'
 }

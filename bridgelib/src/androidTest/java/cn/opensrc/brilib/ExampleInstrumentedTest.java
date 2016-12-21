@@ -1,4 +1,4 @@
-package cn.opensrc.library;
+package cn.opensrc.brilib;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package cn.opensrc.library;
+package cn.opensrc.brilib;
 
 import android.net.Uri;
 import android.webkit.WebView;
@@ -31,16 +31,21 @@ public class JSBridge {
      * @param params the target function parameters
      */
     public static void callJSFunc(WebView webView, String func, String... params) {
+
+        if (webView == null || func == null || "".equals(func) || params == null)
+            throw new RuntimeException("callJSFunc method exist illegal parameter");
+
         StringBuilder sb = new StringBuilder("javascript:" + func + "(");
-        for (String param : params) {
-            sb.append("\'");
-            sb.append(param);
-            sb.append("\'");
-            sb.append(",");
+        if (params.length > 0) {
+            for (String param : params) {
+                sb.append("\'");
+                sb.append(param);
+                sb.append("\'");
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), "");
         }
-        sb.replace(sb.length() - 1, sb.length(), "");
         sb.append(")");
-        System.out.println("sb=" + sb);
         webView.loadUrl(sb.toString());
     }
 
@@ -57,11 +62,11 @@ public class JSBridge {
     public static Object callJavaMethod(String className, String methodName, Object... params) {
 
         if (className == null || "".equals(className) || methodName == null || "".equals(methodName))
-            throw new RuntimeException("the className and methodName must not be null or empty");
+            throw new RuntimeException("callJavaMethod method exist illegal parameter");
         if (!exposedMethods.containsKey(className))
             throw new RuntimeException(className + " class not register");
         if (!exposedMethods.get(className).containsKey(methodName))
-            throw new RuntimeException(methodName + " method dose not exist");
+            throw new RuntimeException(methodName + "the invoked method dose not exist");
         Method method = exposedMethods.get(className).get(methodName);
 
         try {
@@ -84,6 +89,8 @@ public class JSBridge {
      */
     public static void register(String className, Class<? extends IBridge> clz) {
 
+        if (className == null || "".equals(className) || clz == null)
+            throw new RuntimeException("register method exist illegal parameter");
         if (!exposedMethods.containsKey(className)) {
             Map<String, Method> methods = new HashMap<>();
             for (Method method : clz.getMethods()) {
@@ -101,6 +108,8 @@ public class JSBridge {
      * @return the className in strJs
      */
     public static String getClassName(Uri uri){
+        if (uri == null)
+            throw new RuntimeException("getClassName method parameter is null");
         String className = uri.getHost();
         return className == null || "".equals(className) ? "" : className;
     }
@@ -112,6 +121,8 @@ public class JSBridge {
      * @return the methodName in strJs
      */
     public static String getMethodName(Uri uri){
+        if (uri == null)
+            throw new RuntimeException("getMethodName method parameter is null");
         String methodName = uri.getPath().replace("/","");
         return methodName == null || "".equals(methodName) ? "" : methodName;
     }
@@ -123,6 +134,8 @@ public class JSBridge {
      * @return the Json parameter in strJs
      */
     public static JSONObject getMethodJsonParams(Uri uri){
+        if (uri == null)
+            throw new RuntimeException("getMethodJsonParams method parameter is null");
         String queryStrJSON = uri.getQuery();
         if (queryStrJSON == null || "".equals(queryStrJSON) || "{}".equals(queryStrJSON))
             return null;

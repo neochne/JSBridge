@@ -12,7 +12,7 @@ import android.webkit.WebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.opensrc.library.JSBridge;
+import cn.opensrc.brilib.JSBridge;
 
 /**
  * Author:       sharp
@@ -66,7 +66,7 @@ public class MainAty extends AppCompatActivity{
     }
 
     public void callJsFunc(View v) throws JSONException {
-        JSBridge.callJSFunc(wv,"func1","sharp");
+        JSBridge.callJSFunc(wv,"func");
     }
 
 
